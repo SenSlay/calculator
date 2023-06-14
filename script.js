@@ -10,8 +10,20 @@ function storeNum(el) {
 };
 
 
+
+
 // 
 function operate() {
 
+};
+
+// Clears all terms and operator
+function clearDisplay() {
+    firstTerm = "";
+    operator = "";
+    secondTerm = "";
+
+    document.getElementById("currExp").innerHTML = "0";
+    document.getElementById("prevExp").innerHTML = "";
 };
 
