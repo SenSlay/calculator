@@ -5,11 +5,16 @@ let secondTerm = "";
 
 function storeNum(el) {
     firstTerm += el.innerHTML
-    console.log(el.innerHTML);
     document.getElementById("currExp").innerHTML = `${firstTerm}`;
 };
 
+function storeOperator(el) {
+    secondTerm = firstTerm;
+    firstTerm = "";
+    operator = el.dataset.operator
 
+    document.getElementById("prevExp").innerHTML = `${secondTerm} ${operator}`
+};
 
 
 // 
