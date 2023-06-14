@@ -27,3 +27,9 @@ function clearDisplay() {
     document.getElementById("prevExp").innerHTML = "";
 };
 
+// Deletes the last number
+function del() {
+    firstTerm = firstTerm.slice(0, -1);
+
+    document.getElementById("currExp").innerHTML = `${firstTerm}`;
+};
