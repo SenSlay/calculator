@@ -9,17 +9,40 @@ function storeNum(el) {
 };
 
 function storeOperator(el) {
-    secondTerm = firstTerm;
-    firstTerm = "";
-    operator = el.dataset.operator
+    if (operator) {
+        operate()
+        operator = el.dataset.operator
+    
+        document.getElementById("prevExp").innerHTML = `${secondTerm} ${operator}`
 
-    document.getElementById("prevExp").innerHTML = `${secondTerm} ${operator}`
+    } else {
+        secondTerm = firstTerm;
+        firstTerm = "";
+        operator = el.dataset.operator
+    
+        document.getElementById("prevExp").innerHTML = `${secondTerm} ${operator}`
+    }
 };
 
 
 // 
 function operate() {
+    console.log(operator)
+    if (operator == "+") {
+        let sum = Number(firstTerm) + Number(secondTerm);
 
+        document.getElementById("prevExp").innerHTML = `${sum} ${operator}`;
+        document.getElementById("currExp").innerHTML = `${sum}`;
+        firstTerm = "";
+        
+    } else if (operator == "-") {
+        let diff = Number(firstTerm) - Number(secondTerm);
+
+        document.getElementById("prevExp").innerHTML = `${diff} ${operator}`;
+        document.getElementById("currExp").innerHTML = `${diff}`;
+        firstTerm = "";
+
+    }
 };
 
 // Clears all terms and operator
