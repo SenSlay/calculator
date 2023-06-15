@@ -1,4 +1,4 @@
-let firstTerm = "";
+let firstTerm = "0";
 let operator = "";
 let secondTerm = "";
 
@@ -68,8 +68,7 @@ function operate(el) {
             document.getElementById("prevExp").innerHTML = `${firstTerm} ${operator} ${secondTerm} =`;
             document.getElementById("currExp").innerHTML = `${result}`;
 
-            firstTerm = "";
-            operator = "";
+            firstTerm = result;
             secondTerm = "";
         } else {
             document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
