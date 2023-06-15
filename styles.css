@@ -27,13 +27,19 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
+    background-color: #616161;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #505050;
 }
 
 #calculator {
     margin-top: 60px;
     width: 300px;
     padding: 2rem;
-    background-color: rgb(62, 62, 62);
+    background-color: rgb(39, 39, 39);
     border-radius: 15px;
 }
 
@@ -46,13 +52,14 @@ body {
 #screen {
     display: flex;
     flex-direction: column;
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(60, 59, 59);
     border-radius: 5px;
     margin-bottom: 2rem;
     padding: 15px;
     word-wrap: break-word;
     word-break: break-all;
     text-align: right;
+    box-shadow: inset 2px 2px 5px 3px rgba(0,0,0,0.5);
 }
 
 #prevExp {
