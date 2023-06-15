@@ -8,6 +8,7 @@ function storeNum(el) {
         secondTerm += el.innerHTML;
         document.getElementById("currExp").innerHTML = `${secondTerm}`;
     } else {
+        document.getElementById("prevExp").innerHTML = "";
         firstTerm += el.innerHTML;
         document.getElementById("currExp").innerHTML = `${firstTerm}`;
     }
@@ -17,11 +18,14 @@ function storeNum(el) {
 function storeOperator(el) {
     if (secondTerm) {
         let result = operate();
-        operator = el.dataset.operator;
 
-        document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
-        firstTerm = result;
-        secondTerm = "";
+        if (result) {
+            operator = el.dataset.operator;
+    
+            document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
+            firstTerm = result;
+            secondTerm = "";
+        }
     } else {
         operator = el.dataset.operator;
     
@@ -32,6 +36,11 @@ function storeOperator(el) {
 // Computes the expression
 function operate(el) {
     if (secondTerm) {
+        if ((operator == "%" || operator == "/") && secondTerm == 0) {
+            alert("You can't divide by 0!");
+            return;
+        }
+
         let result = 0;
     
         switch (operator) {
@@ -58,6 +67,10 @@ function operate(el) {
         if (el) {
             document.getElementById("prevExp").innerHTML = `${firstTerm} ${operator} ${secondTerm} =`;
             document.getElementById("currExp").innerHTML = `${result}`;
+
+            firstTerm = "";
+            operator = "";
+            secondTerm = "";
         } else {
             document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
             document.getElementById("currExp").innerHTML = `${result}`;
