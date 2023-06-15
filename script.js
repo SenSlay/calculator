@@ -19,6 +19,7 @@ function storeOperator(el) {
     if (secondTerm) {
         let result = operate();
 
+        // Check if the expression is valid
         if (result) {
             operator = el.dataset.operator;
     
@@ -28,7 +29,6 @@ function storeOperator(el) {
         }
     } else {
         operator = el.dataset.operator;
-    
         document.getElementById("prevExp").innerHTML = `${firstTerm} ${operator}`;
     }
 };
@@ -36,11 +36,11 @@ function storeOperator(el) {
 // Computes the expression
 function operate(el) {
     if (secondTerm) {
+        // Show an error msg when a user tries to divide by 0
         if ((operator == "%" || operator == "/") && secondTerm == 0) {
             alert("You can't divide by 0!");
             return;
         }
-
         let result = 0;
     
         switch (operator) {
@@ -75,7 +75,7 @@ function operate(el) {
             document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
             document.getElementById("currExp").innerHTML = `${result}`;
         }
-    
+
         return result;
     }
 };
