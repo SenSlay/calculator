@@ -52,6 +52,7 @@ body {
     padding: 15px;
     word-wrap: break-word;
     word-break: break-all;
+    text-align: right;
 }
 
 #prevExp {
