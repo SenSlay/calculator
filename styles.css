@@ -46,16 +46,18 @@ body {
 #screen {
     display: flex;
     flex-direction: column;
-    height: 70px;
     background-color: rgb(32, 32, 32);
     border-radius: 5px;
     margin-bottom: 2rem;
     padding: 15px;
-    font-size: 18px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 #prevExp {
+    font-size: 20px;
     align-self: end;
+    margin-bottom: 5px;
 }
 
 #currExp {
