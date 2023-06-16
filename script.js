@@ -1,4 +1,4 @@
-let firstTerm = "0";
+let firstTerm = "";
 let operator = "";
 let secondTerm = "";
 
@@ -78,6 +78,20 @@ function operate(el) {
         return result;
     }
 };
+
+//Keyboard support
+document.addEventListener("keydown", (char) => {
+    if (/^\d$/.test(char.key)) {
+        if (operator) {
+            secondTerm += char.key;
+            document.getElementById("currExp").innerHTML = `${secondTerm}`;
+        } else {
+            document.getElementById("prevExp").innerHTML = "";
+            firstTerm += char.key;
+            document.getElementById("currExp").innerHTML = `${firstTerm}`;
+        }
+    }
+});
 
 // Clears all terms and operator
 function clearDisplay() {
