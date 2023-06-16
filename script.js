@@ -30,7 +30,6 @@ function storeOperator(el, char) {
             secondTerm = "";
         }
     } else {
-        console.log("test")
         el ? operator = el.dataset.operator : operator = char.key;
         document.getElementById("prevExp").innerHTML = `${firstTerm} ${operator}`;
     }
@@ -143,7 +142,6 @@ function del() {
         if (secondTerm.length == 0) {
             document.getElementById("currExp").innerHTML = 0;
         }
-
     } else if (expression == true) {
         document.getElementById("prevExp").innerHTML = "";
         expression = false;
@@ -151,5 +149,10 @@ function del() {
     } else if (firstTerm && !operator) {
         firstTerm = firstTerm.slice(0, -1);
         document.getElementById("currExp").innerHTML = `${firstTerm}`;
+
+        console.log(firstTerm.length);
+        if (firstTerm.length == 0) {
+            document.getElementById("currExp").innerHTML = 0;
+        }
     }
 };
