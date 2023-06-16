@@ -81,6 +81,7 @@ function operate(el) {
 
 //Keyboard support
 document.addEventListener("keydown", (char) => {
+    // Support for number keys
     if (/^\d$/.test(char.key)) {
         if (operator) {
             secondTerm += char.key;
@@ -94,7 +95,7 @@ document.addEventListener("keydown", (char) => {
 });
 
 // Clears all terms and operator
-function clearDisplay() {
+function clearEntry() {
     firstTerm = "";
     operator = "";
     secondTerm = "";
@@ -104,7 +105,7 @@ function clearDisplay() {
 };
 
 // Deletes the last number
-function del() {
+function clearAll() {
     if (operator && firstTerm) {
         secondTerm = secondTerm.slice(0, -1);
 
