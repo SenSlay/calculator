@@ -1,39 +1,40 @@
+let expression = Boolean;
 let firstTerm = "";
 let operator = "";
 let secondTerm = "";
 
-// Stores the number that was clicked. If an operator exists, store the number to the second term of expression
-function storeNum(el) {
+// Store the number that was clicked. If an operator exists, store the number to the second term of expression
+function storeNum(el, char) {
     if (operator) {
-        secondTerm += el.innerHTML;
+        el ? secondTerm += el.innerHTML : secondTerm += char.key;
         document.getElementById("currExp").innerHTML = `${secondTerm}`;
     } else {
         document.getElementById("prevExp").innerHTML = "";
-        firstTerm += el.innerHTML;
+        el ? firstTerm += el.innerHTML : firstTerm += char.key;
         document.getElementById("currExp").innerHTML = `${firstTerm}`;
     }
 };
 
-// Stores the operator that was clicked. If an operator exists, operate() is called
-function storeOperator(el) {
+// Store the operator that was clicked. If an operator exists, operate() is called
+function storeOperator(el, char) {
     if (secondTerm) {
         let result = operate();
 
         // Check if the expression is valid
         if (result) {
-            operator = el.dataset.operator;
+            el ? operator = el.dataset.operator : operator = char.key;
     
             document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
             firstTerm = result;
             secondTerm = "";
         }
     } else {
-        operator = el.dataset.operator;
+        el ? operator = el.dataset.operator : operator = char.key;
         document.getElementById("prevExp").innerHTML = `${firstTerm} ${operator}`;
     }
 };
 
-// Computes the expression
+// Compute the expression
 function operate(el) {
     if (secondTerm) {
         // Show an error msg when a user tries to divide by 0
@@ -63,56 +64,92 @@ function operate(el) {
                 console.log('Invalid operator');
         }
     
-        // Shows the most recent equation if equals button is pressed
+        // Show the most recent equation if equals button is pressed
         if (el) {
             document.getElementById("prevExp").innerHTML = `${firstTerm} ${operator} ${secondTerm} =`;
             document.getElementById("currExp").innerHTML = `${result}`;
 
             firstTerm = result;
             secondTerm = "";
+            expression = true;
         } else {
             document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
             document.getElementById("currExp").innerHTML = `${result}`;
+            expression = false;
         }
 
         return result;
     }
 };
 
-//Keyboard support
+// Keyboard support for number, operator, and backspace keys
 document.addEventListener("keydown", (char) => {
-    // Support for number keys
+    // Check if key pressed is a number
     if (/^\d$/.test(char.key)) {
-        if (operator) {
-            secondTerm += char.key;
-            document.getElementById("currExp").innerHTML = `${secondTerm}`;
-        } else {
-            document.getElementById("prevExp").innerHTML = "";
-            firstTerm += char.key;
-            document.getElementById("currExp").innerHTML = `${firstTerm}`;
-        }
+        storeNum(false, char);
     }
+    // Check if key pressed is backspace
+    if (char.key === "Backspace") {
+        del();
+    }
+    // Check if key pressed is an operator
+    if (/^[+\-*%/]$/.test(char.key)) {
+        storeOperator(false, char);
+    }
+    // Check if key pressed is equal or enter
+    if (char.key === "Enter" || char.key === "=") {
+        operate(true);
+    }
+
 });
 
-// Clears all terms and operator
+// Clear current entry
 function clearEntry() {
+    if (expression == true) {
+        clearAll();
+    }
+
+    if (operator && firstTerm) {
+        secondTerm = "";
+
+        document.getElementById("currExp").innerHTML = 0;
+    }  else {
+        firstTerm = "";
+    
+        document.getElementById("currExp").innerHTML = 0;
+    }
+};
+
+// Clear all 
+function clearAll() {
     firstTerm = "";
     operator = "";
     secondTerm = "";
+    expression = false;
 
-    document.getElementById("currExp").innerHTML = "0";
+    document.getElementById("currExp").innerHTML = 0;
     document.getElementById("prevExp").innerHTML = "";
 };
 
-// Deletes the last number
-function clearAll() {
-    if (operator && firstTerm) {
+// Delete number
+function del() {
+    if (operator && secondTerm) {
+        console.log("test1");
         secondTerm = secondTerm.slice(0, -1);
 
         document.getElementById("currExp").innerHTML = `${secondTerm}`;
-    } else {
+
+        if (secondTerm.length == 0) {
+            document.getElementById("currExp").innerHTML = 0;
+        }
+
+    } else if (expression == true) {
+        document.getElementById("prevExp").innerHTML = "";
+        expression = false;
+
+    } else if (firstTerm && !operator) {
         firstTerm = firstTerm.slice(0, -1);
-    
+        
         document.getElementById("currExp").innerHTML = `${firstTerm}`;
     }
 };
