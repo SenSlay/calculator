@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/19aba0697a.js" crossorigin="anonymous"></script>
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -15,25 +16,26 @@
             </div>
             
             <div class="btn-container">
+                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="%"><i class="fa fa-percent"></i></button>
                 <button type="button" class="btn" onclick="clearEntry()">CE</button>
                 <button type="button" class="btn" onclick="clearAll()">C</button>
-                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="%">%</button>
-                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="/">/</button>
+                <button type="button" class="btn" onclick="del()"><i class="fa-solid fa-delete-left"></i></button>
                 <button type="button" class="btn" onclick="storeNum(this)">7</button>
                 <button type="button" class="btn" onclick="storeNum(this)">8</button>
                 <button type="button" class="btn" onclick="storeNum(this)">9</button>
-                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="*">x</button>
+                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="/"><i class="fa fa-divide"></i></button>
                 <button type="button" class="btn" onclick="storeNum(this)">4</button>
                 <button type="button" class="btn" onclick="storeNum(this)">5</button>
                 <button type="button" class="btn" onclick="storeNum(this)">6</button>
-                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="-">-</button>
+                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="*"><i class="fa fa-xmark"></i></button>
                 <button type="button" class="btn" onclick="storeNum(this)">1</button>
                 <button type="button" class="btn" onclick="storeNum(this)">2</button>
                 <button type="button" class="btn" onclick="storeNum(this)">3</button>
-                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="+">+</button>
-                <button type="button" class="btn" onclick="storeNum(this)">0</button>
+                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="-"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn" onclick="storeNum(this)">.</button>
-                <button type="button" class="btn" onclick="operate(this)" id="equalsBtn">=</button>    
+                <button type="button" class="btn" onclick="storeNum(this)">0</button>
+                <button type="button" class="btn" onclick="operate(this)" id="equalsBtn"><i class="fa fa-equals"></i></button>    
+                <button type="button" class="btn" onclick="storeOperator(this)" data-operator="+"><i class="fa fa-plus"></i></button>
             </div>
         </div>
     </div>
