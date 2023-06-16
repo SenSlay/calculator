@@ -17,7 +17,6 @@ function storeNum(el, char) {
 
 // Store the operator that was clicked. If an operator exists, operate() is called
 function storeOperator(el, char) {
-    console.log(el)
     if (secondTerm) {
         let result = operate();
 
