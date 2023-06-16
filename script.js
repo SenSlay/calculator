@@ -17,11 +17,12 @@ function storeNum(el, char) {
 
 // Store the operator that was clicked. If an operator exists, operate() is called
 function storeOperator(el, char) {
+    console.log(el)
     if (secondTerm) {
         let result = operate();
 
         // Check if the expression is valid
-        if (result) {
+        if (result != "Invalid") {
             el ? operator = el.dataset.operator : operator = char.key;
     
             document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
@@ -29,6 +30,7 @@ function storeOperator(el, char) {
             secondTerm = "";
         }
     } else {
+        console.log("test")
         el ? operator = el.dataset.operator : operator = char.key;
         document.getElementById("prevExp").innerHTML = `${firstTerm} ${operator}`;
     }
@@ -40,7 +42,7 @@ function operate(el) {
         // Show an error msg when a user tries to divide by 0
         if ((operator == "%" || operator == "/") && secondTerm == 0) {
             alert("You can't divide by 0!");
-            return;
+            return "Invalid";
         }
         let result = 0;
     
@@ -75,9 +77,11 @@ function operate(el) {
         } else {
             document.getElementById("prevExp").innerHTML = `${result} ${operator}`;
             document.getElementById("currExp").innerHTML = `${result}`;
+
+            firstTerm = result;
+            secondTerm = "";
             expression = false;
         }
-
         return result;
     }
 };
@@ -105,17 +109,16 @@ document.addEventListener("keydown", (char) => {
 
 // Clear current entry
 function clearEntry() {
+    // If an expression exists, clear all
     if (expression == true) {
         clearAll();
     }
 
     if (operator && firstTerm) {
         secondTerm = "";
-
         document.getElementById("currExp").innerHTML = 0;
     }  else {
         firstTerm = "";
-    
         document.getElementById("currExp").innerHTML = 0;
     }
 };
@@ -134,9 +137,7 @@ function clearAll() {
 // Delete number
 function del() {
     if (operator && secondTerm) {
-        console.log("test1");
         secondTerm = secondTerm.slice(0, -1);
-
         document.getElementById("currExp").innerHTML = `${secondTerm}`;
 
         if (secondTerm.length == 0) {
@@ -149,7 +150,6 @@ function del() {
 
     } else if (firstTerm && !operator) {
         firstTerm = firstTerm.slice(0, -1);
-        
         document.getElementById("currExp").innerHTML = `${firstTerm}`;
     }
 };
