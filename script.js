@@ -149,7 +149,6 @@ function del() {
         firstTerm = firstTerm.slice(0, -1);
         document.getElementById("currExp").innerHTML = `${firstTerm}`;
 
-        console.log(firstTerm.length);
         if (firstTerm.length == 0) {
             document.getElementById("currExp").innerHTML = 0;
         }
