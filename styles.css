@@ -35,6 +35,10 @@ body {
     background-color: #505050;
 }
 
+.btn:active {
+    background-color: #616161;
+}
+
 #calculator {
     margin-top: 60px;
     width: 300px;
@@ -44,8 +48,6 @@ body {
 }
 
 #equalsBtn {
-    grid-column-start: 3;
-    grid-column-end: 5;
     background-color: orange;
 }
 
